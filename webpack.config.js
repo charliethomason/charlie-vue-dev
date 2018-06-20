@@ -2,14 +2,16 @@ const webpack = require('webpack');
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
+const resolve = dir => path.join(__dirname, '..', dir);
+
 module.exports = {
   entry: {
-    index: './src/index.js'
+    app: './src/index.js'
   },
   output: {
-    path: path.resolve(__dirname, '../build'),
+    path: path.resolve(__dirname, 'build/'),
     publicPath: 'build/',
-    filename: '[name].js'
+    filename: '[name].min.js',
   },
   module: {
     rules: [
@@ -19,18 +21,38 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader'
+        loader: 'babel-loader',
+        include: [resolve('src')]
       }
     ]
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'initial'
+        }
+      }
+    }
   },
   plugins: [
     new VueLoaderPlugin()
   ],
-  mode: 'development',
   devServer: {
     contentBase: './',
     compress: true,
-    port: 9000
+    port: 9000,
+    stats: {
+      assets: false,
+      builtAt: false,
+      entrypoints: false,
+      hash: false,
+      modules: false,
+      timings: false,
+      version: false
+    }
   },
   devtool: 'source-map'
 };
