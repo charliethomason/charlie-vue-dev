@@ -23,6 +23,23 @@ module.exports = {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src')]
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', {
+          loader: 'sass-loader',
+          options: {
+            outputStyle: 'compressed'
+          }
+        }]
+      },
+      {
+        test: /\.(jpg|png|gif)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'img/'
+        }
       }
     ]
   },
