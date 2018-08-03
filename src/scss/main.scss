@@ -1,13 +1,2 @@
-@import '_reset';
-
-.wrapper {
-  background: #eee;
-  .logo {
-    background-image: url('../img/ct-logo-01.jpg');
-    height: 86px;
-    width: 600px;
-  }
-  h1 {
-    font-family: Arial;
-  }
-}
+@import 'reset';
+@import 'global';
