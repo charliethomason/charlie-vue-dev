@@ -1,3 +1,3 @@
-# charliethomason.github.io VueJS portfolio
+# VueJS portfolio
 
-New portfolio website for charliethomason.github.io, built with VueJS and Webpack.
+ Test portfolio website, built with VueJS and Webpack.
